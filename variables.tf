@@ -16,12 +16,6 @@ variable "project_name" {
   default     = "scottylabs"
 }
 
-variable "database_name" {
-  description = "The name of the database to create"
-  type        = string
-  default     = "scottylabs"
-}
-
 variable "bastion_key_name" {
   description = "The name of the SSH key to use for the bastion host"
   type        = string
@@ -32,4 +26,15 @@ variable "allowed_bastion_cidr_blocks" {
   description = "List of CIDR blocks allowed to SSH to the bastion host"
   type        = list(string)
   default     = ["0.0.0.0/0"] # Consider restricting this to your organization's IP ranges
+}
+
+variable "cloudflare_api_token" {
+  description = "Cloudflare API token for managing domains and DNS records"
+  type        = string
+  sensitive   = true
+}
+
+variable "cloudflare_account_id" {
+  description = "Cloudflare account ID"
+  type        = string
 }

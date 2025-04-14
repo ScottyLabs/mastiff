@@ -1,14 +1,3 @@
-resource "aws_ecs_cluster" "this" {
-  name = var.cluster_name
-
-  setting {
-    name  = "containerInsights"
-    value = var.enable_container_insights ? "enabled" : "disabled"
-  }
-
-  tags = var.tags
-}
-
 resource "aws_iam_role" "execution_role" {
   name = var.execution_role_name
 
