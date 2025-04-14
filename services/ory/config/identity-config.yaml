@@ -1,0 +1,263 @@
+clients:
+  web_hook:
+    header_allowlist:
+      - Accept
+      - Accept-Encoding
+      - Accept-Language
+      - Content-Length
+      - Content-Type
+      - Origin
+      - Priority
+      - Referer
+      - Sec-Ch-Ua
+      - Sec-Ch-Ua-Mobile
+      - Sec-Ch-Ua-Platform
+      - Sec-Fetch-Dest
+      - Sec-Fetch-Mode
+      - Sec-Fetch-Site
+      - Sec-Fetch-User
+      - True-Client-Ip
+      - User-Agent
+      - X-Forwarded-Host
+      - Ory-Base-Url-Rewrite
+      - Ory-Base-Url-Rewrite-Token
+      - X-Ory-Original-Host
+      - Ory-No-Custom-Domain-Redirect
+cookies:
+  domain: naughty-goldberg-iddxkyd15g.projects.oryapis.com
+  path: /
+  same_site: Lax
+courier:
+  smtp:
+    from_name: ScottyLabs - Production via Ory
+  templates:
+    login_code:
+      valid:
+        email:
+          body: {}
+        sms:
+          body: {}
+    recovery:
+      invalid:
+        email:
+          body: {}
+      valid:
+        email:
+          body: {}
+    recovery_code:
+      invalid:
+        email:
+          body: {}
+      valid:
+        email:
+          body: {}
+    registration_code:
+      valid:
+        email:
+          body: {}
+        sms:
+          body: {}
+    verification:
+      invalid:
+        email:
+          body: {}
+      valid:
+        email:
+          body: {}
+    verification_code:
+      invalid:
+        email:
+          body: {}
+      valid:
+        email:
+          body: {}
+        sms:
+          body: {}
+feature_flags:
+  cacheable_sessions: false
+  cacheable_sessions_max_age: 2m30s
+  faster_session_extend: true
+  password_profile_registration_node_group: password
+  use_continue_with_transitions: true
+identity:
+  default_schema_id: preset://email
+  schemas:
+    - id: preset://email
+      url: base64://ewogICIkaWQiOiAiaHR0cHM6Ly9zY2hlbWFzLm9yeS5zaC9wcmVzZXRzL2tyYXRvcy9pZGVudGl0eS5lbWFpbC5zY2hlbWEuanNvbiIsCiAgIiRzY2hlbWEiOiAiaHR0cDovL2pzb24tc2NoZW1hLm9yZy9kcmFmdC0wNy9zY2hlbWEjIiwKICAidGl0bGUiOiAiUGVyc29uIiwKICAidHlwZSI6ICJvYmplY3QiLAogICJwcm9wZXJ0aWVzIjogewogICAgInRyYWl0cyI6IHsKICAgICAgInR5cGUiOiAib2JqZWN0IiwKICAgICAgInByb3BlcnRpZXMiOiB7CiAgICAgICAgImVtYWlsIjogewogICAgICAgICAgInR5cGUiOiAic3RyaW5nIiwKICAgICAgICAgICJmb3JtYXQiOiAiZW1haWwiLAogICAgICAgICAgInRpdGxlIjogIkUtTWFpbCIsCiAgICAgICAgICAib3J5LnNoL2tyYXRvcyI6IHsKICAgICAgICAgICAgImNyZWRlbnRpYWxzIjogewogICAgICAgICAgICAgICJwYXNzd29yZCI6IHsKICAgICAgICAgICAgICAgICJpZGVudGlmaWVyIjogdHJ1ZQogICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgIndlYmF1dGhuIjogewogICAgICAgICAgICAgICAgImlkZW50aWZpZXIiOiB0cnVlCiAgICAgICAgICAgICAgfSwKICAgICAgICAgICAgICAidG90cCI6IHsKICAgICAgICAgICAgICAgICJhY2NvdW50X25hbWUiOiB0cnVlCiAgICAgICAgICAgICAgfSwKICAgICAgICAgICAgICAiY29kZSI6IHsKICAgICAgICAgICAgICAgICJpZGVudGlmaWVyIjogdHJ1ZSwKICAgICAgICAgICAgICAgICJ2aWEiOiAiZW1haWwiCiAgICAgICAgICAgICAgfSwKICAgICAgICAgICAgICAicGFzc2tleSI6IHsKICAgICAgICAgICAgICAgICJkaXNwbGF5X25hbWUiOiB0cnVlCiAgICAgICAgICAgICAgfQogICAgICAgICAgICB9LAogICAgICAgICAgICAicmVjb3ZlcnkiOiB7CiAgICAgICAgICAgICAgInZpYSI6ICJlbWFpbCIKICAgICAgICAgICAgfSwKICAgICAgICAgICAgInZlcmlmaWNhdGlvbiI6IHsKICAgICAgICAgICAgICAidmlhIjogImVtYWlsIgogICAgICAgICAgICB9CiAgICAgICAgICB9LAogICAgICAgICAgIm1heExlbmd0aCI6IDMyMAogICAgICAgIH0KICAgICAgfSwKICAgICAgInJlcXVpcmVkIjogWwogICAgICAgICJlbWFpbCIKICAgICAgXSwKICAgICAgImFkZGl0aW9uYWxQcm9wZXJ0aWVzIjogZmFsc2UKICAgIH0KICB9Cn0K
+oauth2_provider:
+  override_return_to: true
+preview:
+  default_read_consistency_level: strong
+security:
+  account_enumeration:
+    mitigate: false
+selfservice:
+  allowed_return_urls:
+    - https://naughty-goldberg-iddxkyd15g.projects.oryapis.com
+    - /ui/logout
+    - /ui/consent
+    - /ui/welcome
+    - /ui/sessions
+    - https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/error
+    - https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/login
+    - https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/recovery
+    - https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/settings
+    - https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/registration
+    - https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/verification
+  default_browser_return_url: /
+  flows:
+    error:
+      ui_url: https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/error
+    login:
+      after:
+        code:
+          hooks: []
+        hooks: []
+        lookup_secret:
+          hooks: []
+        oidc:
+          hooks: []
+        passkey:
+          hooks: []
+        password:
+          hooks: []
+        saml:
+          hooks: []
+        totp:
+          hooks: []
+        webauthn:
+          hooks: []
+      before:
+        hooks: []
+      style: identifier_first
+      ui_url: https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/login
+    logout:
+      after: {}
+    recovery:
+      after:
+        hooks: []
+      before:
+        hooks: []
+      enabled: true
+      notify_unknown_recipients: false
+      ui_url: https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/recovery
+      use: code
+    registration:
+      after:
+        code:
+          hooks:
+            - hook: session
+        hooks: []
+        oidc:
+          hooks:
+            - hook: session
+        passkey:
+          hooks:
+            - hook: session
+        password:
+          hooks:
+            - hook: session
+        saml:
+          hooks:
+            - hook: session
+        webauthn:
+          hooks:
+            - hook: session
+      before:
+        hooks: []
+      enable_legacy_one_step: true
+      login_hints: true
+      style: unified
+      ui_url: https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/registration
+    settings:
+      after:
+        hooks: []
+        lookup_secret:
+          hooks: []
+        oidc:
+          hooks: []
+        passkey:
+          hooks: []
+        password:
+          hooks: []
+        profile:
+          hooks: []
+        saml:
+          hooks: []
+        totp:
+          hooks: []
+        webauthn:
+          hooks: []
+      before:
+        hooks: []
+      privileged_session_max_age: 15m0s
+      required_aal: highest_available
+      ui_url: https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/settings
+    verification:
+      after:
+        hooks: []
+      before:
+        hooks: []
+      enabled: true
+      notify_unknown_recipients: false
+      ui_url: https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/verification
+      use: code
+  methods:
+    b2b:
+      config:
+        organizations: []
+    code:
+      config:
+        missing_credential_fallback_enabled: true
+    link:
+      config:
+        base_url: ""
+      enabled: true
+    lookup_secret: {}
+    oidc:
+      config:
+        providers: []
+      enabled: false
+    passkey:
+      config:
+        rp:
+          display_name: ScottyLabs - Production
+          id: naughty-goldberg-iddxkyd15g.projects.oryapis.com
+          origins:
+            - https://naughty-goldberg-iddxkyd15g.projects.oryapis.com
+    password:
+      config: {}
+    profile: {}
+    totp:
+      config:
+        issuer: ScottyLabs - Production
+    webauthn:
+      config:
+        passwordless: false
+        rp:
+          display_name: ScottyLabs - Production
+          id: naughty-goldberg-iddxkyd15g.projects.oryapis.com
+          origins:
+            - https://naughty-goldberg-iddxkyd15g.projects.oryapis.com
+serve:
+  admin:
+    base_url: https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/
+    request_log:
+      disable_for_health: true
+  public:
+    base_url: https://naughty-goldberg-iddxkyd15g.projects.oryapis.com/
+    cors:
+      enabled: false
+    request_log:
+      disable_for_health: true
+session:
+  cookie:
+    domain: naughty-goldberg-iddxkyd15g.projects.oryapis.com
+    name: ory_session_naughtygoldbergiddxkyd15g
+    path: /
+    same_site: Lax
+  lifespan: 72h0m0s
+  whoami:
+    required_aal: highest_available
+    tokenizer:
+      templates: {}
