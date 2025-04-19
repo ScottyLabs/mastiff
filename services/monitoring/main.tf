@@ -78,3 +78,24 @@ module "uptime_kuma" {
     Terraform   = "true"
   }
 }
+
+module "opentelemetry" {
+  source = "../../modules/observability/opentelemetry"
+
+  environment         = var.environment
+  project_name        = var.project_name
+  vpc_id              = var.vpc_id
+  private_subnet_ids  = var.private_subnet_ids
+  public_subnet_ids   = var.public_subnet_ids
+  cluster_arn         = var.cluster_arn
+  execution_role_arn  = var.execution_role_arn
+  aws_region          = var.aws_region
+  
+  prometheus_endpoint = module.prometheus.prometheus_url
+  
+  tags = {
+    Environment = var.environment
+    Project     = var.project_name
+    Terraform   = "true"
+  }
+}

@@ -37,3 +37,13 @@ output "uptime_kuma_efs_id" {
   description = "EFS filesystem ID used by Uptime Kuma for data storage"
   value       = module.uptime_kuma.uptime_kuma_efs_id
 }
+
+output "opentelemetry_grpc_endpoint" {
+  description = "OTLP/gRPC endpoint for OpenTelemetry Collector"
+  value       = module.opentelemetry.otel_grpc_endpoint
+}
+
+output "opentelemetry_http_endpoint" {
+  description = "OTLP/HTTP endpoint for OpenTelemetry Collector"
+  value       = module.opentelemetry.otel_http_endpoint
+}
