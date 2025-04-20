@@ -95,7 +95,7 @@ aws configure sso
 
 SSO session name: `scottylabs`
 SSO start URL: `https://scottylabs.awsapps.com/start`
-AWS region: `us-east-1`
+AWS region: `us-east-2`
 SSO registration scopes: No need to enter anything.
 
 Then, the CLI will prompt you to open a browser to complete the login process.
