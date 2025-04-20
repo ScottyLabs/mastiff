@@ -84,3 +84,105 @@ Replace `env/app` with the specific environment and application, for example:
 - `prod/backend-api-1/terraform.tfstate`
 
 This allows each environment and application to have its own isolated state.
+
+## AWS Stuff
+
+Set up AWS CLI with sso authorization via the following command:
+
+```
+aws configure sso
+```
+
+SSO session name: `scottylabs`
+SSO start URL: `https://scottylabs.awsapps.com/start`
+AWS region: `us-east-1`
+SSO registration scopes: No need to enter anything.
+
+Then, the CLI will prompt you to open a browser to complete the login process.
+
+Return to the CLI, select `scottylabs` and click `Continue`.
+
+CLI default client Region: `us-east-2`
+CLI default output format: `json`
+CLI profile name: `scottylabs`
+
+Log into AWS CLI with sso authorization via the following command:
+
+```
+aws sso login --profile scottylabs
+```
+
+The bastion is a private ec2 instance that has internal VPC access. To access it, a valid sso profile is needed.
+
+```bash
+ aws ssm start-session --target <instance id> --profile <sso profile>   
+```
+
+### Accessing the RDS Database
+
+Once you've connected to the bastion host via SSM (as described above), you can access the RDS database using the
+following steps:
+
+```bash
+# Connect to PostgreSQL database
+psql -h <rds-endpoint> -U <database-username> -d <database-name>
+```
+
+You'll be prompted for the database password. Retrieve it from the secrets manager. Enter it to connect to the database.
+
+For example:
+
+```bash
+psql -h scottylabs.cluster-xyz123.us-east-1.rds.amazonaws.com -U postgres -d scottylabs
+```
+
+## Managing the Public Schema
+
+### Checking the Current Schema Owner
+
+To check the current owner of the public schema:
+
+```sql
+SELECT schema_name, schema_owner
+FROM information_schema.schemata
+WHERE schema_name = 'public';
+```
+
+### Recreating the Public Schema
+
+If you need to recreate the public schema while preserving ownership:
+
+1. First, note the current owner:
+
+```sql
+SELECT schema_owner
+FROM information_schema.schemata
+WHERE schema_name = 'public';
+```
+
+2. Drop the schema (with CASCADE if you want to remove all objects within it):
+
+```sql
+DROP SCHEMA public CASCADE;
+```
+
+3. Recreate the schema:
+
+```sql
+CREATE SCHEMA public;
+```
+
+4. Set the ownership to the previous owner:
+
+```sql
+ALTER SCHEMA public OWNER TO <previous_owner>;
+```
+
+5. Restore default privileges:
+
+```sql
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO public;
+```
+
+Make sure to back up any important data before dropping the schema if you're doing this in a production environment.
