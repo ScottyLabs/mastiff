@@ -115,7 +115,7 @@ aws sso login --profile scottylabs
 The bastion is a private ec2 instance that has internal VPC access. To access it, a valid sso profile is needed.
 
 ```bash
- aws ssm start-session --target <instance id> --profile <sso profile>   
+aws ssm start-session --target <instance id> --profile <sso profile>   
 ```
 
 ### Accessing the RDS Database
