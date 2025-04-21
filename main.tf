@@ -111,3 +111,17 @@ module "cmumaps" {
   account_id               = data.aws_caller_identity.current.account_id
   github_oidc_provider_arn = aws_iam_openid_connect_provider.github.arn
 }
+
+module "akita" {
+  source = "./services/akita"
+
+  environment          = var.environment
+  cluster_arn          = module.ecs.cluster_arn
+  vpc_id               = module.vpc.vpc_id
+  private_subnet_ids   = module.vpc.private_subnet_ids
+  public_subnet_ids    = module.vpc.public_subnet_ids
+  private_subnet_cidrs = module.vpc.private_subnet_cidrs
+
+  account_id               = data.aws_caller_identity.current.account_id
+  github_oidc_provider_arn = aws_iam_openid_connect_provider.github.arn
+}
