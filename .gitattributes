@@ -1,0 +1,3 @@
+*.ini.tpl linguist-language=INI
+*.yml.tpl linguist-language=YAML
+*.yaml.tpl linguist-language=YAML
