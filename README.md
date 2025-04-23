@@ -8,10 +8,10 @@ Each environment (dev, staging, prod) has its own state file and can be applied 
 
 ## Usage
 
-To initialize and apply infrastructure for a specific environment (e.g., dev):
+To initialize and apply infrastructure for a specific environment (e.g., prod):
 
 ```bash
-terraform init -var-file=environments/dev/terraform.tfvars
-terraform plan -var-file=environments/dev/terraform.tfvars
-terraform apply -var-file=environments/dev/terraform.tfvars
+terraform init -var-file=environments/prod/terraform.tfvars
+terraform plan -var-file=environments/prod/terraform.tfvars
+terraform apply -var-file=environments/prod/terraform.tfvars
 ```
