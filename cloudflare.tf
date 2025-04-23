@@ -25,6 +25,20 @@ module "cloudflare_dns" {
           proxied = true
         }
       ]
-    }
+    },
+    {
+      name       = "cmucourses.com"
+      plan       = "pro"
+      account_id = var.cloudflare_account_id
+      records = [
+        {
+          name    = "api"
+          type    = "CNAME"
+          content = module.collie.service.alb_dns_name
+          ttl     = 1
+          proxied = true
+        }
+      ]
+    },
   ]
 }
