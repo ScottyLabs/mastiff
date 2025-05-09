@@ -27,14 +27,3 @@ variable "allowed_bastion_cidr_blocks" {
   type        = list(string)
   default     = ["0.0.0.0/0"] # Consider restricting this to your organization's IP ranges
 }
-
-variable "cloudflare_api_token" {
-  description = "Cloudflare API token for managing domains and DNS records"
-  type        = string
-  sensitive   = true
-}
-
-variable "cloudflare_account_id" {
-  description = "Cloudflare account ID"
-  type        = string
-}

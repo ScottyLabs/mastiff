@@ -27,13 +27,3 @@ output "ecs_execution_role_arn" {
   description = "The ARN of the ECS execution role"
   value       = module.ecs.execution_role_arn
 }
-
-output "cloudflare_zone_ids" {
-  description = "Map of domain names to their Cloudflare zone IDs"
-  value       = module.cloudflare_dns.zone_ids
-}
-
-output "cloudflare_nameservers" {
-  description = "Map of domain names to their assigned nameservers"
-  value       = module.cloudflare_dns.nameservers
-}
