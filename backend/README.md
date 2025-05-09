@@ -82,7 +82,7 @@ aws configure sso
 ```
 
 SSO session name: `scottylabs`
-SSO start URL: `https://scottylabs.awsapps.com/start`
+SSO start URL: `https://scottylabs.awsapps.com/start/#`
 AWS region: `us-east-2`
 SSO registration scopes: Use the default option.
 
