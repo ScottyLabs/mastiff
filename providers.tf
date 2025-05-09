@@ -11,11 +11,11 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "scottylabs-terraform-state"
-    key            = "prod/terraform.tfstate"
-    region         = "us-east-2"
-    dynamodb_table = "scottylabs-terraform-locks"
-    encrypt        = true
-    profile        = "scottylabs-gabriel"
+    bucket       = "scottylabs-terraform-state"
+    key          = "prod/terraform.tfstate"
+    region       = "us-east-2"
+    use_lockfile = true
+    encrypt      = true
+    profile      = "scottylabs-gabriel"
   }
 }

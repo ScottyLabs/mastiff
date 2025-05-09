@@ -5,7 +5,6 @@ set -e
 
 # Default variables
 BUCKET_NAME="scottylabs-terraform-state"
-DYNAMODB_TABLE="scottylabs-terraform-locks"
 REGION="us-east-2"
 PROFILE="scottylabs-gabriel"
 
@@ -29,13 +28,9 @@ while [[ $# -gt 0 ]]; do
       BUCKET_NAME="$2"
       shift 2
       ;;
-    --table)
-      DYNAMODB_TABLE="$2"
-      shift 2
-      ;;
     *)
       echo "Unknown option: $1"
-      echo "Usage: $0 [--profile PROFILE] [--region REGION] [--bucket BUCKET_NAME] [--table TABLE_NAME]"
+      echo "Usage: $0 [--profile PROFILE] [--region REGION] [--bucket BUCKET_NAME]"
       exit 1
       ;;
   esac
@@ -91,24 +86,8 @@ aws s3api put-bucket-encryption \
 echo -e "${GREEN}Enabled encryption on bucket '$BUCKET_NAME'${NC}" || \
 { echo -e "${RED}Failed to enable encryption on bucket '$BUCKET_NAME'${NC}"; exit 1; }
 
-echo "Creating DynamoDB table for state locking..."
-if aws dynamodb describe-table --table-name "$DYNAMODB_TABLE" --region "$REGION" $PROFILE_ARG &> /dev/null; then
-    echo "DynamoDB table '$DYNAMODB_TABLE' already exists."
-else
-    aws dynamodb create-table \
-        --table-name "$DYNAMODB_TABLE" \
-        --attribute-definitions AttributeName=LockID,AttributeType=S \
-        --key-schema AttributeName=LockID,KeyType=HASH \
-        --billing-mode PAY_PER_REQUEST \
-        --region "$REGION" \
-        $PROFILE_ARG && \
-    echo -e "${GREEN}Created DynamoDB table '$DYNAMODB_TABLE'${NC}" || \
-    { echo -e "${RED}Failed to create DynamoDB table '$DYNAMODB_TABLE'${NC}"; exit 1; }
-fi
-
 echo -e "${GREEN}Terraform remote state backend setup complete!${NC}"
 echo "S3 Bucket: $BUCKET_NAME"
-echo "DynamoDB Table: $DYNAMODB_TABLE"
 echo "Region: $REGION"
 echo "AWS Profile: $PROFILE"
 echo ""
@@ -116,11 +95,11 @@ echo "Use this configuration in your Terraform files:"
 echo ""
 echo 'terraform {'
 echo '  backend "s3" {'
-echo "    bucket         = \"$BUCKET_NAME\""
-echo '    key            = "env/app/terraform.tfstate"'
-echo "    region         = \"$REGION\""
-echo "    dynamodb_table = \"$DYNAMODB_TABLE\""
-echo "    profile        = \"$PROFILE\""
-echo '    encrypt        = true'
+echo "    bucket       = \"$BUCKET_NAME\""
+echo '    key          = "env/app/terraform.tfstate"'
+echo "    region       = \"$REGION\""
+echo "    use_lockfile = true"
+echo "    profile      = \"$PROFILE\""
+echo '    encrypt      = true'
 echo '  }'
 echo '}' 
